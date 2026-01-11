@@ -1,7 +1,7 @@
 questions = {
     "Easy": [
         {"question": "რა ფერია მზე?", "answer": "ყვითელი"},
-        {"question": "რა ფერია ცა?", "answer": "ჩისფერი"}
+        {"question": "რა ფერია ცა?", "answer": "ცისფერი"}
     ],
     "Medium": [
         {"question": "5 * 5 ...?", "answer": "25"},
@@ -13,11 +13,13 @@ questions = {
     ]
 }
 
+
 def play_quiz(level_questions):
     score = 0
+
     for q in level_questions:
         attempts = 3
-        answerd = False
+
         while attempts > 0:
             print(q["question"])
             answer = input("პასუხი: ")
@@ -37,7 +39,7 @@ def play_quiz(level_questions):
             if answer == q["answer"]:
                 print("სწორი პასუხი!")
                 score += 1
-                answered = True
+                break
             else:
                 attempts -= 1
                 if attempts > 0:
@@ -45,15 +47,18 @@ def play_quiz(level_questions):
                 else:
                     print(f"ცდები ამოიწურა! სწორი პასუხი იყო: {q['answer']}")
 
-            print(f"Quiz დასრულდა! ქულა: {score} / {len(level_questions)}")
+    print(f"Quiz დასრულდა! ქულა: {score} / {len(level_questions)}")
+
 
 while True:
-    print("\nაირჩიე დონე:")
+    print("აირჩიე დონე:")
     print("1. Easy")
     print("2. Medium")
     print("3. Hard")
     print("4. გამოსვლა")
+
     choice = input("შეიყვანე არჩევანი: ")
+
     if choice == "1":
         play_quiz(questions["Easy"])
     elif choice == "2":
@@ -64,4 +69,4 @@ while True:
         print("ნახვამდის!")
         break
     else:
-        print("არასწორი არჩევანი, სცადე ისევ!")
+        print("არასწორი არჩევანი, სცადე თავიდან")
