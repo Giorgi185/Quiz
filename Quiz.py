@@ -16,24 +16,36 @@ questions = {
 def play_quiz(level_questions):
     score = 0
     for q in level_questions:
-        print(q["question"])
-        answer = input("პასუხი: ")
-        correct_letters = []
-        for i, (user_char, correct_char) in enumerate(zip(answer, q["answer"])):
-            if user_char == correct_char:
-                correct_letters.append((i, user_char))
-        if correct_letters:
-            print("სწორ ადგილზეა:")
-            for i, char in correct_letters:
-                print(f"  პოზიცია {i}: '{char}'")
-        else:
-            print("არცერთი ასო არ არის სწორ ადგილზე")
-        if answer == q["answer"]:
-            print("სწორი პასუხი!")
-            score += 1
-        else:
-            print(f" არასწორი პასუხი! სწორი პასუხი: {q['answer']}")
-    print(f"\n Quiz დასრულდა! ქულა: {score} / {len(level_questions)}")
+        attempts = 3
+        answerd = False
+        while attempts > 0:
+            print(q["question"])
+            answer = input("პასუხი: ")
+
+            correct_letters = []
+            for i, (user_char, correct_char) in enumerate(zip(answer, q["answer"])):
+                if user_char == correct_char:
+                    correct_letters.append((i, user_char))
+
+            if correct_letters:
+                print("სწორ ადგილზეა:")
+                for i, char in correct_letters:
+                    print(f"  პოზიცია {i}: '{char}'")
+            else:
+                print("არცერთი ასო არ არის სწორ ადგილზე")
+
+            if answer == q["answer"]:
+                print("სწორი პასუხი!")
+                score += 1
+                answered = True
+            else:
+                attempts -= 1
+                if attempts > 0:
+                    print(f"არასწორია! დარჩენილი ცდები: {attempts}")
+                else:
+                    print(f"ცდები ამოიწურა! სწორი პასუხი იყო: {q['answer']}")
+
+            print(f"Quiz დასრულდა! ქულა: {score} / {len(level_questions)}")
 
 while True:
     print("\nაირჩიე დონე:")
