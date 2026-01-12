@@ -42,6 +42,19 @@ questions = {
 
     ]
 }
+
+level_requirements = {
+    'Easy': 3,
+    'Medium': 6,
+    'Hard': 10
+}
+
+unlocked_levels = {
+    "Easy": True,
+    "Medium": False,
+    "Hard": False
+}
+
 def play_quiz(level_questions):
     score = 0
 
@@ -76,25 +89,55 @@ def play_quiz(level_questions):
                     print(f"ცდები ამოიწურა! სწორი პასუხი იყო: {q['answer']}")
 
     print(f"Quiz დასრულდა! ქულა: {score} / {len(level_questions)}")
+    return score
 
 
 while True:
     print("აირჩიე დონე:")
     print("1. Easy")
-    print("2. Medium")
-    print("3. Hard")
+    if unlocked_levels["Medium"]:
+        print("2. Medium")
+    else:
+        print("2. Medium locked")
+
+    if unlocked_levels["Hard"]:
+        print("3. Hard")
+    else:
+        print("3. Hard locked")
+
     print("4. გამოსვლა")
 
     choice = input("შეიყვანე არჩევანი: ")
 
     if choice == "1":
-        play_quiz(questions["Easy"])
+        score = play_quiz(questions["Easy"])
+        if score >= level_requirements["Easy"]:
+            print("Easy დონე დახურე გილოცავ")
+            unlocked_levels["Medium"] = True
+        else:
+            print("Easy დონე ვერ დახურე")
     elif choice == "2":
-        play_quiz(questions["Medium"])
+        if not unlocked_levels["Medium"]:
+            print("ეს დონე ჯერ არ გაქვს გახსნილი")
+            continue
+        score = play_quiz(questions["Medium"])
+        if score >= level_requirements["Medium"]:
+            print("Medium დონე დახურე გილოცავ")
+            unlocked_levels['Hard'] = True
+        else:
+            print("Medium დონე ვერ დახურე")
     elif choice == "3":
-        play_quiz(questions["Hard"])
+        if not unlocked_levels["Hard"]:
+            print("ეს დონე ჯერ არ გაქვს გახსნილი")
+            continue
+        score = play_quiz(questions["Hard"])
+        if score >= level_requirements["Hard"]:
+            print("Hard დონე დახურე გილოცავ")
+            print("გილოცავ თამაში მთლიანად დახურე")
+        else:
+            print("Hard დონე ვერ დახურე")
     elif choice == "4":
-        print("ნახვამდის!")
+        print("ნახვამდის")
         break
     else:
         print("არასწორი არჩევანი, სცადე თავიდან")
