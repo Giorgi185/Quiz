@@ -127,7 +127,7 @@ while True:
     if choice == "1":
         score = play_quiz(questions["Easy"])
         if score >= level_requirements["Easy"]:
-            print("3 ჭამში გაიგებ ქვიზის პასუხს")
+            print("3 წამში გაიგებ ქვიზის პასუხს")
             time.sleep(3)
             print("Easy დონე დახურე გილოცავ")
             unlocked_levels["Medium"] = True
@@ -141,7 +141,7 @@ while True:
         time.sleep(5)
         score = play_quiz(questions["Medium"])
         if score >= level_requirements["Medium"]:
-            print("3 ჭამში გაიგებ ქვიზის პასუხს")
+            print("3 წამში გაიგებ ქვიზის პასუხს")
             time.sleep(3)
             print("Medium დონე დახურე გილოცავ")
             unlocked_levels['Hard'] = True
@@ -155,7 +155,7 @@ while True:
         time.sleep(5)
         score = play_quiz(questions["Hard"])
         if score >= level_requirements["Hard"]:
-            print("3 ჭამში გაიგებ ქვიზის პასუხს")
+            print("3 წამში გაიგებ ქვიზის პასუხს")
             time.sleep(3)
             print("Hard დონე დახურე გილოცავ")
             time.sleep(3)
